@@ -1,0 +1,129 @@
+{
+  "personal_info": {
+    "company_name": "株式会社サンプル",
+    "department": "営業部",
+    "name": "田中太郎",
+    "email": "tanaka.taro@sample-company.co.jp",
+    "phone": "03-1234-5678",
+    "address": "東京都渋谷区サンプル1-2-3",
+    "postal_code": "150-0001",
+    "position": "営業課長",
+    "employee_id": "EMP001",
+    "created_at": "2024-01-01T00:00:00Z",
+    "updated_at": "2024-01-01T00:00:00Z"
+  },
+  "indexed_data": [
+    {
+      "field": "company_name",
+      "content": "株式会社サンプル",
+      "type": "personal_info",
+      "keywords": [
+        "株式会社サンプル"
+      ]
+    },
+    {
+      "field": "department",
+      "content": "営業部",
+      "type": "personal_info",
+      "keywords": [
+        "営業部"
+      ]
+    },
+    {
+      "field": "name",
+      "content": "田中太郎",
+      "type": "personal_info",
+      "keywords": [
+        "田中太郎"
+      ]
+    },
+    {
+      "field": "email",
+      "content": "tanaka.taro@sample-company.co.jp",
+      "type": "personal_info",
+      "keywords": [
+        "company",
+        "taro",
+        "jp",
+        "tanaka.taro@sample-company.co.jp",
+        "co",
+        "tanaka",
+        "sample"
+      ]
+    },
+    {
+      "field": "phone",
+      "content": "03-1234-5678",
+      "type": "personal_info",
+      "keywords": [
+        "5678",
+        "1234",
+        "03",
+        "03-1234-5678"
+      ]
+    },
+    {
+      "field": "address",
+      "content": "東京都渋谷区サンプル1-2-3",
+      "type": "personal_info",
+      "keywords": [
+        "東京都渋谷区サンプル1",
+        "東京都渋谷区サンプル1-2-3",
+        "3",
+        "2"
+      ]
+    },
+    {
+      "field": "postal_code",
+      "content": "150-0001",
+      "type": "personal_info",
+      "keywords": [
+        "150-0001",
+        "0001",
+        "150"
+      ]
+    },
+    {
+      "field": "position",
+      "content": "営業課長",
+      "type": "personal_info",
+      "keywords": [
+        "営業課長"
+      ]
+    },
+    {
+      "field": "employee_id",
+      "content": "EMP001",
+      "type": "personal_info",
+      "keywords": [
+        "EMP001"
+      ]
+    },
+    {
+      "field": "created_at",
+      "content": "2024-01-01T00:00:00Z",
+      "type": "personal_info",
+      "keywords": [
+        "00Z",
+        "2024-01-01T00:00:00Z",
+        "01T00",
+        "2024",
+        "01",
+        "00"
+      ]
+    },
+    {
+      "field": "updated_at",
+      "content": "2024-01-01T00:00:00Z",
+      "type": "personal_info",
+      "keywords": [
+        "00Z",
+        "2024-01-01T00:00:00Z",
+        "01T00",
+        "2024",
+        "01",
+        "00"
+      ]
+    }
+  ]
+}
