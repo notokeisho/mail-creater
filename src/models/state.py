@@ -27,6 +27,9 @@ class EmailState(TypedDict):
     current_step: str  # 現在のステップ
     personal_info: Optional[Dict[str, Any]]  # 個人情報
 
+    # 最終結果
+    final_email: Optional[str]  # 生成されたメール文
+
     # エラー処理
     error_message: Optional[str]  # エラーメッセージ
     retry_count: int  # リトライ回数
@@ -56,6 +59,7 @@ def create_initial_state(session_id: Optional[str] = None) -> EmailState:
         collected_answers={},
         current_step="information_collection",
         personal_info=None,
+        final_email=None,
         error_message=None,
         retry_count=0,
         session_id=session_id,

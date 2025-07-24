@@ -35,8 +35,12 @@ class PersonalInfoRAG:
                 print(f"Failed to load index: {e}")
                 self.personal_info = {}
                 self.indexed_data = []
+                # インデックスが読み込めない場合は新規作成
+                self.index_personal_info()
         else:
             print("New index will be created")
+            # 新規作成時は個人情報を自動的にインデックス化
+            self.index_personal_info()
 
     def load_personal_info(self, file_path: str = None) -> Dict[str, Any]:
         """個人情報JSONをロード"""
