@@ -1,0 +1,46 @@
+// For format details, see https://aka.ms/devcontainer.json. For config options, see the
+// README at: https://github.com/devcontainers/templates/tree/main/src/python
+{
+  "name": "Python 3",
+  // Or use a Dockerfile or Docker Compose file. More info: https://containers.dev/guide/dockerfile
+  "image": "mcr.microsoft.com/devcontainers/python:1-3.12-bullseye",
+  "forwardPorts": [8501],
+  "portsAttributes": {
+    "8501": {
+      "label": "streamlit",
+      "onAutoForward": "notify"
+    }
+  },
+  "customizations": {
+    "vscode": {
+      "settings": {
+        // terminal
+        "terminal.integrated.defaultProfile.linux": "zsh",
+        // format
+        "editor.defaultFormatter": "esbenp.prettier-vscode",
+        "editor.formatOnSave": true,
+        "[python]": {
+          "editor.defaultFormatter": "ms-python.black-formatter"
+        },
+        // icon
+        "workbench.iconTheme": "vscode-icons",
+        "vsicons.dontShowNewVersionMessage": true,
+        // explorer
+        "explorer.confirmDelete": false
+      },
+      "extensions": [
+        // python
+        "ms-python.python",
+        "ms-python.black-formatter",
+        // format
+        "esbenp.prettier-vscode",
+        // docker
+        "ms-azuretools.vscode-docker",
+        //  github actions
+        "github.vscode-github-actions",
+        // vscode-icons
+        "vscode-icons-team.vscode-icons"
+      ]
+    }
+  }
+}
