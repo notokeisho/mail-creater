@@ -11,7 +11,7 @@ class PersonalInfo(TypedDict):
     """個人情報の型定義"""
 
     # 基本情報
-    company_name: str
+    university_name: str
     department: str
     name: str
 
@@ -24,8 +24,8 @@ class PersonalInfo(TypedDict):
     postal_code: Optional[str]
 
     # その他の情報
-    position: Optional[str]
-    employee_id: Optional[str]
+    student_id: Optional[str]
+    grade: Optional[str]
 
     # メタデータ
     created_at: str
@@ -36,15 +36,15 @@ class PersonalInfo(TypedDict):
 PERSONAL_INFO_SCHEMA = {
     "type": "object",
     "properties": {
-        "company_name": {"type": "string", "description": "会社名"},
-        "department": {"type": "string", "description": "部署名"},
+        "university_name": {"type": "string", "description": "大学名"},
+        "department": {"type": "string", "description": "学部・学科名"},
         "name": {"type": "string", "description": "氏名"},
         "email": {"type": "string", "format": "email", "description": "メールアドレス"},
         "phone": {"type": "string", "description": "電話番号"},
         "address": {"type": "string", "description": "住所"},
         "postal_code": {"type": "string", "description": "郵便番号"},
-        "position": {"type": "string", "description": "役職"},
-        "employee_id": {"type": "string", "description": "社員ID"},
+        "student_id": {"type": "string", "description": "学籍番号"},
+        "grade": {"type": "string", "description": "学年"},
         "created_at": {
             "type": "string",
             "format": "date-time",
@@ -56,6 +56,6 @@ PERSONAL_INFO_SCHEMA = {
             "description": "更新日時",
         },
     },
-    "required": ["company_name", "department", "name", "email", "phone", "address"],
+    "required": ["university_name", "department", "name", "email", "phone", "address"],
     "additionalProperties": False,
 }

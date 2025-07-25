@@ -109,12 +109,12 @@ pytest tests/test_state.py -v
 
 ```json
 {
-  "company_name": "株式会社サンプル",
-  "department": "営業部",
-  "name": "田中太郎",
-  "email": "tanaka.taro@sample-company.co.jp",
-  "phone": "03-1234-5678",
-  "address": "東京都渋谷区サンプル1-2-3"
+  "university_name": "東京大学",
+  "department": "工学部情報工学科",
+  "name": "山田花子",
+  "email": "yamada.hanako@student.tokyo-u.ac.jp",
+  "phone": "080-1234-5678",
+  "address": "東京都文京区本郷7-3-1"
 }
 ```
 

@@ -223,7 +223,7 @@ class TestWorkflowIntegration:
         assert result["final_email"] is not None
         # 個人情報が含まれていることを確認
         email_content = result["final_email"]
-        assert "株式会社サンプル" in email_content or "田中太郎" in email_content
+        assert "東京大学" in email_content or "山田花子" in email_content
 
     def test_rag_integration(self):
         """RAG統合のテスト"""

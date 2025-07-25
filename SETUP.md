@@ -25,15 +25,15 @@ LOG_LEVEL=INFO
 
 ```json
 {
-  "company_name": "株式会社サンプル",
-  "department": "営業部",
-  "name": "田中太郎",
-  "email": "tanaka.taro@sample-company.co.jp",
-  "phone": "03-1234-5678",
-  "address": "東京都渋谷区サンプル1-2-3",
-  "postal_code": "150-0001",
-  "position": "営業課長",
-  "employee_id": "EMP001",
+  "university_name": "東京大学",
+  "department": "工学部情報工学科",
+  "name": "山田花子",
+  "email": "yamada.hanako@student.tokyo-u.ac.jp",
+  "phone": "080-1234-5678",
+  "address": "東京都文京区本郷7-3-1",
+  "postal_code": "113-8654",
+  "student_id": "2024001",
+  "grade": "3年生",
   "created_at": "2024-01-01T00:00:00Z",
   "updated_at": "2024-01-01T00:00:00Z"
 }
@@ -43,8 +43,8 @@ LOG_LEVEL=INFO
 
 以下のフィールドは必須です：
 
-- `company_name`: 会社名
-- `department`: 部署名
+- `university_name`: 大学名
+- `department`: 学部・学科名
 - `name`: 氏名
 - `email`: メールアドレス
 - `phone`: 電話番号
@@ -55,8 +55,8 @@ LOG_LEVEL=INFO
 以下のフィールドは任意です：
 
 - `postal_code`: 郵便番号
-- `position`: 役職
-- `employee_id`: 社員 ID
+- `student_id`: 学籍番号
+- `grade`: 学年
 
 ## 動作確認
 

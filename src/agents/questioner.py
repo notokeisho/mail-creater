@@ -69,6 +69,7 @@ class QuestionerAgent:
             state = update_state(state, {"collected_answers": answers})
 
             print("質問への回答が完了しました。\n")
+            print(answers)
             return state
 
         except Exception as e:

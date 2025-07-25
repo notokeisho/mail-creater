@@ -41,7 +41,10 @@ class TestStateIntegration:
         state = self.state_manager.get_state(session_id)
         assert state["personal_info"] is not None
         assert state["personal_info"]["name"] == personal_info["name"]
-        assert state["personal_info"]["company_name"] == personal_info["company_name"]
+        assert (
+            state["personal_info"]["university_name"]
+            == personal_info["university_name"]
+        )
         assert state["email_type"] == "new"
         assert state["current_step"] == "questioning"
 

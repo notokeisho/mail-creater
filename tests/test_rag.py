@@ -66,7 +66,7 @@ class TestPersonalInfoRAG:
         info = self.rag.load_personal_info()
         assert isinstance(info, dict)
         assert "name" in info
-        assert "company_name" in info
+        assert "university_name" in info
 
     def test_get_all_personal_info(self):
         """全個人情報取得のテスト"""
@@ -74,7 +74,7 @@ class TestPersonalInfoRAG:
         all_info = self.rag.get_all_personal_info()
         assert isinstance(all_info, dict)
         assert "name" in all_info
-        assert "company_name" in all_info
+        assert "university_name" in all_info
 
     def test_search_scoring(self):
         """検索スコアリングのテスト"""
