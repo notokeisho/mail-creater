@@ -16,7 +16,7 @@ class EmailState(TypedDict):
     """
 
     # メールの基本情報
-    email_type: Optional[str]  # "new" または "reply"
+    email_type: Optional[str]  # "reply" (返信専用)
     recipient_info: Optional[Dict[str, Any]]  # 送信先情報
     original_content: Optional[str]  # 返信時の元メール内容
 
@@ -81,12 +81,9 @@ def update_state(state: EmailState, updates: Dict[str, Any]) -> EmailState:
     """
     from datetime import datetime
 
-    # 更新日時を設定
-    updates["updated_at"] = datetime.now().isoformat()
-
-    # 状態を更新
-    updated_state = {**state, **updates}
-
+    updated_state = state.copy()
+    updated_state.update(updates)
+    updated_state["updated_at"] = datetime.now().isoformat()
     return updated_state
 
 

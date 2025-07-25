@@ -169,7 +169,7 @@ class EmailCreationWorkflow:
             print("リトライしますか？ (y/n): ", end="")
             retry_choice = input().strip().lower()
 
-            if retry_choice == "y":
+            if retry_choice in ["y", "1"]:
                 # リトライ
                 updated_state = update_state(
                     state,

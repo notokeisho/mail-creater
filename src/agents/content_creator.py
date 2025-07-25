@@ -1,7 +1,7 @@
 """
 文章作成エージェント
 
-RAG検索と最終メール文の生成機能を提供します。
+返信メール用のRAG検索と最終メール文の生成機能を提供します。
 """
 
 from typing import Dict, Any
@@ -11,7 +11,7 @@ import time
 
 
 class ContentCreatorAgent:
-    """文章作成エージェント（RAG検索・メール生成・LangGraphノード対応）"""
+    """文章作成エージェント（返信専用・RAG検索・メール生成・LangGraphノード対応）"""
 
     def __init__(self, rate_limit_sec: float = 0.5):
         self.rate_limit_sec = rate_limit_sec
@@ -24,17 +24,14 @@ class ContentCreatorAgent:
     def generate_email_content(
         self, state: EmailState, personal_info: Dict[str, Any]
     ) -> Dict[str, str]:
-        """収集情報に基づきメール文を生成"""
+        """収集情報に基づき返信メール文を生成"""
         recipient = state.get("recipient_info", {})
         answers = state.get("collected_answers", {})
-        email_type = state.get("email_type", "new")
         original_content = state.get("original_content", "")
 
-        # 件名生成
-        if email_type == "reply":
-            subject = f"Re: {original_content[:20]}"
-        else:
-            subject = f"{answers.get('purpose', 'ご連絡')}"
+        # 件名生成（返信専用）
+        subject = f"Re: {original_content[:20]}" if original_content else "Re: ご連絡"
+
         # 本文生成
         body_lines = []
         if recipient.get("company"):
@@ -44,11 +41,12 @@ class ContentCreatorAgent:
         else:
             body_lines.append(f"{recipient.get('name', '')} 様")
         body_lines.append("")
-        if email_type == "reply" and original_content:
-            body_lines.append(
-                f"> {original_content[:100]}{'...' if len(original_content)>100 else ''}"
-            )
+
+        # 元メールの引用
+        if original_content:
+            body_lines.append(f"> {original_content}")
             body_lines.append("")
+
         # 本文メイン
         if answers.get("purpose"):
             body_lines.append(f"この度は{answers['purpose']}の件でご連絡いたしました。")
@@ -57,6 +55,7 @@ class ContentCreatorAgent:
         body_lines.append("")
         body_lines.append("ご確認のほど、よろしくお願いいたします。")
         body_lines.append("")
+
         # 署名
         body_lines.append("――――――――――――――――――――")
         body_lines.append(f"{personal_info.get('company_name', '')}")
@@ -70,15 +69,9 @@ class ContentCreatorAgent:
         return {"subject": subject.strip(), "body": "\n".join(body_lines).strip()}
 
     def format_email(self, state: EmailState, content: Dict[str, str]) -> str:
-        """メール文を美しく整形"""
-        recipient = state.get("recipient_info", {})
-        lines = [
-            f"件名: {content['subject']}",
-            f"宛先: {recipient.get('email', '')} ({recipient.get('name', '')})",
-            "",
-            content["body"],
-        ]
-        return "\n".join(lines)
+        """メール文を美しく整形（返信専用）"""
+        # 返信専用なので件名と宛先は不要、本文のみを返す
+        return content["body"]
 
     def run(self, state: EmailState) -> EmailState:
         """文章作成エージェントのメイン処理（LangGraphノード互換）"""

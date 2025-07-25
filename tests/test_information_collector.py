@@ -12,33 +12,30 @@ class DummyInput:
         self.responses = responses
         self.index = 0
 
-    def __call__(self, prompt=None):
+    def __call__(self, prompt=""):
         if self.index < len(self.responses):
-            res = self.responses[self.index]
+            response = self.responses[self.index]
             self.index += 1
-            return res
+            return response
         return ""
 
 
 @pytest.mark.parametrize(
-    "email_type, recipient, is_reply, original_content",
+    "recipient, original_content",
     [
-        ("1", ["受信者A", "a@example.com", "A社", "営業部"], False, ""),
         (
-            "2",
-            ["受信者B", "b@example.com", "B社", "企画部"],
-            True,
+            ["受信者A", "A社", "営業部"],
             "これは元メールの内容です。",
+        ),
+        (
+            ["受信者B", "B社", "企画部"],
+            "別の元メール内容です。",
         ),
     ],
 )
-def test_information_collector(
-    monkeypatch, email_type, recipient, is_reply, original_content
-):
+def test_information_collector(monkeypatch, recipient, original_content):
     # 入力シーケンスを作成
-    responses = [email_type] + recipient
-    if is_reply:
-        responses.append(original_content)
+    responses = recipient + [original_content]
     dummy_input = DummyInput(responses)
     monkeypatch.setattr("builtins.input", dummy_input)
 
@@ -47,11 +44,23 @@ def test_information_collector(
     new_state = agent.run(state)
 
     # 検証
-    assert new_state["email_type"] == ("reply" if is_reply else "new")
+    assert new_state["email_type"] == "reply"
     assert new_state["recipient_info"]["name"] == recipient[0]
-    assert new_state["recipient_info"]["email"] == recipient[1]
-    if is_reply:
-        assert new_state["original_content"].startswith(original_content[:10])
-    else:
-        assert new_state["original_content"] == ""
+    assert new_state["recipient_info"]["company"] == recipient[1]
+    assert new_state["recipient_info"]["department"] == recipient[2]
+    assert new_state["original_content"].startswith(original_content[:10])
     assert new_state["error_message"] is None
+
+
+def test_information_collector_empty_input(monkeypatch):
+    """空の入力のテスト"""
+    responses = ["", "", "", ""]
+    dummy_input = DummyInput(responses)
+    monkeypatch.setattr("builtins.input", dummy_input)
+
+    agent = InformationCollectorAgent(rate_limit_sec=0)
+    state = create_initial_state("test_session")
+    new_state = agent.run(state)
+
+    # エラーメッセージが設定されていることを確認
+    assert new_state["error_message"] is not None
